@@ -1,3 +1,4 @@
+import Sidebar from '@/layouts/Sidebar';
 import './globals.css';
 
 export default function RootLayout({
@@ -13,6 +14,7 @@ export default function RootLayout({
         <div className='h-screen bg-black'>
           <div className='container h-full mx-auto xl:px-30 max-w-6xl'>
             <div className='grid grid-cols-4 h-full'>
+              <Sidebar />
               <div
                 className='
               col-span-3 
