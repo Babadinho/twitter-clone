@@ -1,5 +1,6 @@
 import Sidebar from '@/layouts/Sidebar';
 import './globals.css';
+import FollowBar from '@/components/FollowBar';
 
 export default function RootLayout({
   children,
@@ -25,6 +26,7 @@ export default function RootLayout({
               >
                 {children}
               </div>
+              <FollowBar />
             </div>
           </div>
         </div>
