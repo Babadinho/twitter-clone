@@ -1,6 +1,9 @@
 import Sidebar from '@/layouts/Sidebar';
 import './globals.css';
 import FollowBar from '@/components/FollowBar';
+import Modal from '@/components/Modal';
+import LoginModal from '@/components/modals/LoginModal';
+import RegisterModal from '@/components/modals/RegisterModal';
 
 export default function RootLayout({
   children,
@@ -27,6 +30,8 @@ export default function RootLayout({
                 {children}
               </div>
               <FollowBar />
+              <LoginModal />
+              <RegisterModal />
             </div>
           </div>
         </div>
