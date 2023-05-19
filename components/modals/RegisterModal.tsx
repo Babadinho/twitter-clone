@@ -3,7 +3,8 @@
 import axios from 'axios';
 import { toast } from 'react-hot-toast';
 import { useCallback, useState } from 'react';
-// import { signIn } from 'next-auth/react';
+import { signIn } from 'next-auth/react';
+import { useSearchParams } from 'next/navigation';
 
 import useLoginModal from '@/hooks/useLoginModal';
 import useRegisterModal from '@/hooks/useRegisterModal';
@@ -12,6 +13,8 @@ import Input from '../Input';
 import Modal from '../Modal';
 
 const RegisterModal = () => {
+  const searchParams = useSearchParams();
+  const callbackUrl = searchParams.get('callbackUrl') || '/';
   const loginModal = useLoginModal();
   const registerModal = useRegisterModal();
 
@@ -46,10 +49,12 @@ const RegisterModal = () => {
 
       toast.success('Account created.');
 
-      //   signIn('credentials', {
-      //     email,
-      //     password,
-      //   });
+      signIn('credentials', {
+        redirect: false,
+        email,
+        password,
+        callbackUrl,
+      });
 
       registerModal.onClose();
     } catch (error) {

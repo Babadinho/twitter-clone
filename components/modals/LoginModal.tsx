@@ -9,6 +9,7 @@ import useRegisterModal from '@/hooks/useRegisterModal';
 
 import Input from '../Input';
 import Modal from '../Modal';
+import { signIn } from 'next-auth/react';
 
 const LoginModal = () => {
   const loginModal = useLoginModal();
@@ -22,10 +23,10 @@ const LoginModal = () => {
     try {
       setIsLoading(true);
 
-      //   await signIn('credentials', {
-      //     email,
-      //     password,
-      //   });
+      await signIn('credentials', {
+        email,
+        password,
+      });
 
       toast.success('Logged in');
 
