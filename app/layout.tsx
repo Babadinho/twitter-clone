@@ -5,6 +5,7 @@ import { Toaster } from 'react-hot-toast';
 import { NextAuthProvider } from './providers';
 import LoginModal from '@/components/modals/LoginModal';
 import RegisterModal from '@/components/modals/RegisterModal';
+import EditModal from '@/components/modals/EditModal';
 
 export default function RootLayout({
   children,
@@ -35,6 +36,7 @@ export default function RootLayout({
                 <FollowBar />
                 <LoginModal />
                 <RegisterModal />
+                <EditModal />
               </NextAuthProvider>
             </div>
           </div>

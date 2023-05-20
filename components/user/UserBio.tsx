@@ -12,7 +12,7 @@ interface UserBioProps {
   userId: string;
 }
 
-const UserBio: React.FC<UserBioProps> = ({ userId }) => {
+const UserBio = ({ userId }: UserBioProps) => {
   const { data: currentUser } = useCurrentUser();
   const { data: fetchedUser } = useUser(userId);
 
@@ -45,7 +45,7 @@ const UserBio: React.FC<UserBioProps> = ({ userId }) => {
           </p>
         </div>
         <div className='flex flex-col mt-4'>
-          <p className='text-white'>{fetchedUser?.bio}</p>
+          <p className='text-white'>{fetchedUser?.user.bio}</p>
           <div
             className='
               flex 

@@ -17,10 +17,7 @@ export async function GET(req: Request) {
       },
     });
 
-    return NextResponse.json({
-      authenticated: !!session,
-      currentUser,
-    });
+    return NextResponse.json(currentUser);
   } catch (error) {
     return NextResponse.json(error);
   }
