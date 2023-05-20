@@ -50,7 +50,7 @@ const Sidebar = () => {
               label={item.label}
             />
           ))}
-          {currentUser && Object.keys(currentUser).length && (
+          {currentUser && Object.keys(currentUser).length > 1 && (
             <SidebarItem
               onClick={() => signOut()}
               icon={BiLogOut}
