@@ -33,7 +33,7 @@ const SidebarItem: React.FC<SidebarItemProps> = ({
       return onClick();
     }
 
-    if (auth && !currentUser) {
+    if (auth && !Object.keys(currentUser).length) {
       loginModal.onOpen();
     } else if (href) {
       router.push(href);

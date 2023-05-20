@@ -1,6 +1,6 @@
 import Sidebar from '@/layouts/Sidebar';
 import './globals.css';
-import FollowBar from '@/components/FollowBar';
+import FollowBar from '@/layouts/FollowBar';
 import { Toaster } from 'react-hot-toast';
 import { NextAuthProvider } from './providers';
 import LoginModal from '@/components/modals/LoginModal';
