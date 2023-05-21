@@ -26,12 +26,12 @@ model User {
   followingIds    String[]  @db.ObjectId
   hasNotification Boolean?
 
-  posts         Post[]
+  tweets        Tweet[]
   comments      Comment[]
   notifications Notification[]
 }
 
-model Post {
+model Tweet {
   id        String   @id @default(auto()) @map("_id") @db.ObjectId
   body      String
   createdAt DateTime @default(now())
@@ -51,10 +51,10 @@ model Comment {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   userId    String   @db.ObjectId
-  postId    String   @db.ObjectId
+  tweetId   String   @db.ObjectId
 
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-  post Post @relation(fields: [postId], references: [id], onDelete: Cascade)
+  user  User  @relation(fields: [userId], references: [id], onDelete: Cascade)
+  tweet Tweet @relation(fields: [tweetId], references: [id], onDelete: Cascade)
 }
 
 model Notification {

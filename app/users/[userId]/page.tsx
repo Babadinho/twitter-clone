@@ -8,6 +8,7 @@ import useUser from '@/hooks/useUser';
 import Header from '@/components/Header';
 import UserHero from '@/components/user/UserHero';
 import UserBio from '@/components/user/UserBio';
+import TweetFeed from '@/components/tweets/TweetFeed';
 
 const UserView = ({ params }: { params: { userId: string } }) => {
   const userId = params.userId;
@@ -27,6 +28,7 @@ const UserView = ({ params }: { params: { userId: string } }) => {
       <Header showBackArrow label={fetchedUser?.user.name} />
       <UserHero userId={userId as string} />
       <UserBio userId={userId as string} />
+      <TweetFeed userId={userId as string} />
     </>
   );
 };
