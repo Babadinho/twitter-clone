@@ -6,6 +6,7 @@ import useTweet from '@/hooks/useTweet';
 import Header from '@/components/Header';
 import Form from '@/components/Form';
 import TweetItem from '@/components/tweets/TweetItem';
+import CommentFeed from '@/components/tweets/CommentFeed';
 
 const TweetView = ({ params }: { params: { tweetId: string } }) => {
   const { tweetId } = params;
@@ -29,6 +30,7 @@ const TweetView = ({ params }: { params: { tweetId: string } }) => {
         isComment
         placeholder='Tweet your reply'
       />
+      <CommentFeed comments={fetchedTweet?.comments} />
     </>
   );
 };

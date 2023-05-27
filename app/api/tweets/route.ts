@@ -1,4 +1,4 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 
 import serverAuth from '@/libs/serverAuth';
 import prisma from '@/libs/prismadb';
@@ -20,14 +20,11 @@ export async function POST(req: Request) {
   }
 }
 
-export async function GET(
-  req: Request,
-  { params }: { params: { id: string } }
-) {
+export async function GET(req: NextRequest) {
   try {
+    const userId = req.nextUrl.searchParams.get('userId');
     let tweets;
-    if (params && typeof params.id === 'string') {
-      const userId = params.id;
+    if (userId && typeof userId === 'string') {
       tweets = await prisma.tweet.findMany({
         where: {
           userId,
