@@ -2,9 +2,9 @@ import useSWR from 'swr';
 
 import fetcher from '@/libs/fetcher';
 
-const usePost = (postId: string) => {
+const useTweet = (tweetId: string) => {
   const { data, error, isLoading, mutate } = useSWR(
-    postId ? `/api/tweets/${postId}` : null,
+    tweetId ? `/api/tweets/${tweetId}` : null,
     fetcher
   );
 
@@ -16,4 +16,4 @@ const usePost = (postId: string) => {
   };
 };
 
-export default usePost;
+export default useTweet;

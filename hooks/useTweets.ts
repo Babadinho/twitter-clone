@@ -2,7 +2,7 @@ import useSWR from 'swr';
 
 import fetcher from '@/libs/fetcher';
 
-const usePosts = (userId?: string) => {
+const useTweets = (userId?: string) => {
   const url = userId ? `/api/tweets?userId=${userId}` : '/api/tweets';
   const { data, error, isLoading, mutate } = useSWR(url, fetcher);
 
@@ -14,4 +14,4 @@ const usePosts = (userId?: string) => {
   };
 };
 
-export default usePosts;
+export default useTweets;

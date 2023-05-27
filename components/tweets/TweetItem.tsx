@@ -5,6 +5,7 @@ import { formatDistanceToNowStrict } from 'date-fns';
 
 import useLoginModal from '@/hooks/useLoginModal';
 import useCurrentUser from '@/hooks/useCurrentUser';
+import useLike from '@/hooks/useLike';
 
 import Avatar from '../Avatar';
 interface TweetItemProps {
@@ -17,13 +18,14 @@ const TweetItem = ({ data = {}, userId }: TweetItemProps) => {
   const loginModal = useLoginModal();
 
   const { data: currentUser } = useCurrentUser();
+  const { hasLiked, toggleLike } = useLike({ tweetId: data.id, userId });
 
   const goToUser = useCallback(
     (ev: any) => {
       ev.stopPropagation();
       router.push(`/users/${data.user.id}`);
     },
-    [router, data.user.id]
+    [router, data?.user?.id]
   );
 
   const goToTweet = useCallback(() => {
@@ -37,9 +39,13 @@ const TweetItem = ({ data = {}, userId }: TweetItemProps) => {
       if (!currentUser) {
         return loginModal.onOpen();
       }
+
+      toggleLike();
     },
-    [loginModal, currentUser]
+    [loginModal, currentUser, toggleLike]
   );
+
+  const LikeIcon = hasLiked ? AiFillHeart : AiOutlineHeart;
 
   const createdAt = useMemo(() => {
     if (!data?.createdAt) {
@@ -62,7 +68,7 @@ const TweetItem = ({ data = {}, userId }: TweetItemProps) => {
       '
     >
       <div className='flex flex-row items-start gap-3'>
-        <Avatar userId={data.user.id} />
+        <Avatar userId={data?.user?.id} />
         <div>
           <div className='flex flex-row items-center gap-2'>
             <p
@@ -74,7 +80,7 @@ const TweetItem = ({ data = {}, userId }: TweetItemProps) => {
                 hover:underline
             '
             >
-              {data.user.name}
+              {data?.user?.name}
             </p>
             <span
               onClick={goToUser}
@@ -86,7 +92,7 @@ const TweetItem = ({ data = {}, userId }: TweetItemProps) => {
                 md:block
             '
             >
-              @{data.user.username}
+              @{data?.user?.username}
             </span>
             <span className='text-neutral-500 text-sm'>{createdAt}</span>
           </div>
@@ -120,7 +126,7 @@ const TweetItem = ({ data = {}, userId }: TweetItemProps) => {
                 hover:text-red-500
             '
             >
-              <AiOutlineHeart size={20} />
+              <LikeIcon color={hasLiked ? 'red' : ''} size={20} />
               <p>{data.likedIds.length}</p>
             </div>
           </div>
